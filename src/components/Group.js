@@ -22,7 +22,7 @@ const StyledGroup = styled.div`
 const Group = ({ data }) => {
   return (
     <>
-      <StyledGroup>
+      <StyledGroup className="custom-scrollbar">
         {Object.keys(data).map((group, idx) => {
           return (
             <Link key={idx} to={`/${group}`}>

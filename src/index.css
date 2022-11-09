@@ -30,3 +30,13 @@ code {
   display: flex;
   height: calc(100vh - 4rem - 50px);
 }
+
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  background-color: transparent;
+  width: 7.5px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+}
