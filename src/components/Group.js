@@ -4,17 +4,19 @@ import { Link, Outlet, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledGroup = styled.div`
+  background-color: var(--column-background-color);
   height: 100%;
   min-width: 200px;
   max-width: 300px;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
+  z-index: 3;
 
   a {
-    color: var(--black);
+    color: var(--font-color);
     display: block;
-    margin: var(--margin);
+    margin: var(--link-margin);
     text-decoration: none;
   }
 `;
