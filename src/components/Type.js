@@ -1,11 +1,10 @@
 import React, { useRef } from "react";
 import Recipes from "./Recipes";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { NavLink, Route, Routes, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledType = styled.div`
   background-color: var(--column-background-color);
-  border: 3px solid green;
   height: 100%;
   min-width: 200px;
   max-width: 250px;
@@ -18,6 +17,9 @@ const StyledType = styled.div`
     margin: var(--link-margin);
     text-decoration: none;
   }
+  a.active {
+    text-decoration: underline;
+  }
 `;
 
 const Type = ({ data }) => {
@@ -28,16 +30,16 @@ const Type = ({ data }) => {
   if (!data[group]) {
     return <div>NOT FOUND</div>;
   }
-
   const types = data[group];
+
   return (
     <>
       <StyledType className="custom-scrollbar expand-right" ref={typeEl}>
         {Object.keys(types).map((type, idx) => {
           return (
-            <Link key={idx} to={`/${group}/${type}`}>
+            <NavLink key={idx} to={`/${group}/${type}`}>
               {type}
-            </Link>
+            </NavLink>
           );
         })}
       </StyledType>

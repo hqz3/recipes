@@ -1,6 +1,6 @@
 import React from "react";
 import Type from "./Type";
-import { Link, Outlet, Routes, Route } from "react-router-dom";
+import { Outlet, Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledGroup = styled.div`
@@ -19,6 +19,9 @@ const StyledGroup = styled.div`
     margin: var(--link-margin);
     text-decoration: none;
   }
+  a.active {
+    text-decoration: underline;
+  }
 `;
 
 const Group = ({ data }) => {
@@ -27,9 +30,9 @@ const Group = ({ data }) => {
       <StyledGroup className="custom-scrollbar">
         {Object.keys(data).map((group, idx) => {
           return (
-            <Link key={idx} to={`/${group}`}>
+            <NavLink key={idx} to={`/${group}`}>
               {group}
-            </Link>
+            </NavLink>
           );
         })}
       </StyledGroup>
