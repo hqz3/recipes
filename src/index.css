@@ -7,8 +7,10 @@
 }
 
 :root {
-  --black: black;
-  --margin: 0.5rem;
+  --font-color: black;
+  --column-background-color: white;
+  --link-margin: 0.5rem;
+  --recipe-font-size: 0.9rem;
 }
 
 body {
@@ -39,4 +41,20 @@ code {
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.15);
   border-radius: 15px;
+}
+
+/* Column expand from left to right animation */
+.expand-right {
+  animation: expandRight 0.15s linear;
+}
+
+@keyframes expandRight {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
