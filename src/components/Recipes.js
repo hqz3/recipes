@@ -4,22 +4,13 @@ import { useParams, Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledRecipes = styled.div`
+  border: 1px solid blue;
   flex: 1;
   height: 100%;
   overflow-y: scroll;
+  padding: 0 40px 0 40px;
+  word-wrap: normal;
   z-index: 1;
-
-  a {
-    color: var(--font-color);
-    cursor: pointer;
-    display: block;
-    overflow: hidden;
-    margin: var(--link-margin);
-    text-decoration: none;
-  }
-  a.active {
-    text-decoration: underline;
-  }
 `;
 
 const Recipes = ({ types }) => {

@@ -1,31 +1,22 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Recipes from "./Recipes";
 import { NavLink, Route, Routes, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledType = styled.div`
+  border: 1px solid orange;
   background-color: var(--column-background-color);
   height: 100%;
-  min-width: 200px;
-  max-width: 250px;
   overflow-y: scroll;
+  padding: 0 40px 0 40px;
   z-index: 2;
-
-  a {
-    color: var(--font-color);
-    display: block;
-    margin: var(--link-margin);
-    text-decoration: none;
-  }
-  a.active {
-    text-decoration: underline;
-  }
 `;
 
 const Type = ({ data }) => {
-  const { group } = useParams();
-  const typeEl = useRef(null);
+  const [reload, setReload] = useState(false);
+  const prevType = useRef();
 
+  const { group } = useParams();
   // TODO: create NotFound component
   if (!data[group]) {
     return <div>NOT FOUND</div>;
@@ -34,17 +25,31 @@ const Type = ({ data }) => {
 
   return (
     <>
-      <StyledType className="custom-scrollbar expand-right" ref={typeEl}>
+      <StyledType className="custom-scrollbar expand-right">
         {Object.keys(types).map((type, idx) => {
           return (
-            <NavLink key={idx} to={`/${group}/${type}`}>
+            <NavLink
+              key={idx}
+              to={`/${group}/${type}`}
+              onClick={() => {
+                // Reload the component if viewing a new food type
+                if (!prevType.current) prevType.current = type;
+                else if (type !== prevType.current) {
+                  prevType.current = type;
+                } else return;
+                setReload(!reload);
+              }}
+            >
               {type}
             </NavLink>
           );
         })}
       </StyledType>
       <Routes>
-        <Route path=":type/*" element={<Recipes types={types} />} />
+        <Route
+          path=":type/*"
+          element={<Recipes key={reload} types={types} />}
+        />
       </Routes>
     </>
   );

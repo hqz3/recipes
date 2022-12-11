@@ -1,44 +1,46 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Type from "./Type";
-import { Outlet, Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledGroup = styled.div`
+  border: 1px solid green;
   background-color: var(--column-background-color);
   height: 100%;
-  min-width: 200px;
-  max-width: 300px;
-  margin: 0;
-  padding: 0;
   overflow-y: scroll;
+  padding: 0 40px 0 40px;
   z-index: 3;
-
-  a {
-    color: var(--font-color);
-    display: block;
-    margin: var(--link-margin);
-    text-decoration: none;
-  }
-  a.active {
-    text-decoration: underline;
-  }
 `;
 
 const Group = ({ data }) => {
+  const [reload, setReload] = useState(false);
+  const prevGroup = useRef();
+
   return (
     <>
       <StyledGroup className="custom-scrollbar">
         {Object.keys(data).map((group, idx) => {
           return (
-            <NavLink key={idx} to={`/${group}`}>
+            <NavLink
+              key={idx}
+              to={`/${group}`}
+              onClick={() => {
+                // Reload the component if viewing a new food group
+                if (!prevGroup.current) {
+                  prevGroup.current = group;
+                } else if (group !== prevGroup.current) {
+                  prevGroup.current = group;
+                } else return;
+                setReload(!reload);
+              }}
+            >
               {group}
             </NavLink>
           );
         })}
       </StyledGroup>
-      <Outlet />
       <Routes>
-        <Route path=":group/*" element={<Type data={data} />} />
+        <Route path=":group/*" element={<Type key={reload} data={data} />} />
       </Routes>
     </>
   );

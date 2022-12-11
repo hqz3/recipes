@@ -5,9 +5,8 @@ const StyledRecipe = styled.div`
   cursor: default;
   font-size: var(--recipe-font-size);
   height: 0px;
-  margin: var(--link-margin);
-  padding: 0;
   overflow: hidden;
+  padding: 0;
   transition: height 0.15s linear;
 `;
 
