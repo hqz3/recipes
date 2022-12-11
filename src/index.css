@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: "EB Garamond", serif;
+  font-family: "Frank Ruhl Libre", serif;
   font-size: 20px;
   height: 100vh;
   margin: 0;
@@ -33,6 +33,18 @@ code {
   height: calc(100vh - 4rem - 50px);
 }
 
+/* Link tag styling */
+a {
+  color: var(--font-color);
+  display: block;
+  margin-top: var(--link-margin);
+  margin-bottom: var(--link-margin);
+  text-decoration: none;
+}
+a.active {
+  text-decoration: underline;
+}
+
 /* Custom scrollbar styling */
 .custom-scrollbar::-webkit-scrollbar {
   background-color: transparent;
@@ -40,7 +52,6 @@ code {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.15);
-  border-radius: 15px;
 }
 
 /* Column expand from left to right animation */
