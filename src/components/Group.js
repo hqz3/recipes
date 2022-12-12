@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
+// Component
 import Type from "./Type";
+// React-Router
 import { Routes, Route, NavLink } from "react-router-dom";
+// Styled
 import styled from "styled-components";
 
 const StyledGroup = styled.div`
-  border: 1px solid green;
+  /* border: 1px solid green; */
   background-color: var(--column-background-color);
   height: 100%;
   overflow-y: scroll;
@@ -19,22 +22,20 @@ const Group = ({ data }) => {
   return (
     <>
       <StyledGroup className="custom-scrollbar">
-        {Object.keys(data).map((group, idx) => {
+        {data.groups.map((group) => {
           return (
             <NavLink
-              key={idx}
-              to={`/${group}`}
+              key={group.categoryId}
+              to={`/${group.slug}`}
               onClick={() => {
-                // Reload the component if viewing a new food group
-                if (!prevGroup.current) {
-                  prevGroup.current = group;
-                } else if (group !== prevGroup.current) {
-                  prevGroup.current = group;
-                } else return;
-                setReload(!reload);
+                // Reload component if viewing a different food group
+                if (group.categoryId !== prevGroup.current) {
+                  prevGroup.current = group.categoryId;
+                  setReload(!reload);
+                }
               }}
             >
-              {group}
+              {group.name}
             </NavLink>
           );
         })}
