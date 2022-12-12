@@ -69,3 +69,15 @@ a.active {
     transform: translateX(0);
   }
 }
+
+.meat {
+  color: #ff0000;
+}
+
+.seafood {
+  color: #0040ff;
+}
+
+.vegan {
+  color: #1ba500;
+}
