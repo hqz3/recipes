@@ -6,10 +6,9 @@ import SubGroup from "./SubGroup";
 import { Routes, Route, NavLink } from "react-router-dom";
 // Styled
 import styled from "styled-components";
-import NotFound from "./NotFound";
 
 const StyledGroup = styled.section`
-  border: 1px solid green;
+  border: 1px solid black;
   background-color: var(--column-background-color);
   height: 100%;
   overflow-y: scroll;
@@ -40,7 +39,6 @@ const Group = ({ data }) => {
           />
         ))}
         <Route path="search" element={<Search />} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
