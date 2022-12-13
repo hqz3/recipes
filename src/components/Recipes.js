@@ -1,6 +1,13 @@
 import React from "react";
+// Component
 import Recipe from "./Recipe";
-import { useParams, Routes, Route, NavLink } from "react-router-dom";
+import Spinner from "./Spinner";
+// React-Query
+import { useQuery } from "react-query";
+import { getRecipes } from "../fetch.js";
+// React-Router
+import { Routes, Route, NavLink } from "react-router-dom";
+// Styled
 import styled from "styled-components";
 
 const StyledRecipes = styled.div`
@@ -13,9 +20,18 @@ const StyledRecipes = styled.div`
   z-index: 1;
 `;
 
-const Recipes = ({ types }) => {
-  const { group, type } = useParams();
-  const recipes = types[type];
+const Recipes = ({ subGroupId }) => {
+  const { isFetching, data } = useQuery("recipes", () =>
+    getRecipes(subGroupId)
+  );
+
+  if (isFetching) {
+    return <Spinner />;
+  }
+
+  const {
+    posts: { edges: recipes },
+  } = data;
 
   const toggleRecipe = (e) => {
     // Only triggers if user clicks on the recipe title
@@ -51,16 +67,20 @@ const Recipes = ({ types }) => {
       onClick={toggleRecipe}
       onTransitionEnd={setDisplayNone}
     >
-      {Object.keys(recipes).map((id, idx) => {
+      {recipes.map((recipe, idx) => {
         return (
-          <article key={id}>
-            <NavLink className="recipe-title" to={`/${group}/${type}/${id}`}>
-              {recipes[id].title}
+          <article key={recipe.node.postId}>
+            <NavLink
+              className="recipe-title"
+              to={`${recipe.node.postId}`}
+              data-classification={recipe.node.acf.classification}
+            >
+              {recipe.node.title}
             </NavLink>
             <Routes>
               <Route
-                path={`${id}`}
-                element={<Recipe id={id} recipes={recipes} />}
+                path={`${recipe.node.postId}`}
+                element={<Recipe recipe={recipes[idx]} />}
               />
             </Routes>
           </article>
