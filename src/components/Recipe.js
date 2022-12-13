@@ -1,4 +1,13 @@
 import React, { useEffect, useRef } from "react";
+// Component
+import Image from "./Image";
+import Time from "./Time";
+import Serving from "./Serving";
+import Ingredients from "./Ingredients";
+import Steps from "./Steps";
+import PDF from "./PDF";
+import Source from "./Source";
+// Styled
 import styled from "styled-components";
 
 const StyledRecipe = styled.div`
@@ -7,26 +16,30 @@ const StyledRecipe = styled.div`
   height: 0px;
   overflow: hidden;
   padding: 0;
-  transition: height 0.15s linear;
+  transition: height 0.5s ease-in-out;
 `;
 
-const Recipe = ({ id, recipes }) => {
-  const recipe = recipes[id];
-  const { ingredients, steps, source } = recipe;
+const Recipe = ({ recipe }) => {
   const recipeEl = useRef();
-
   useEffect(() => {
     const height = recipeEl.current.scrollHeight;
     recipeEl.current.style.height = `${height}px`;
   }, []);
 
+  // Destructure WordPress's Advanced Custom Fields
+  const {
+    node: { acf },
+  } = recipe;
+
   return (
     <StyledRecipe className="recipe" ref={recipeEl}>
-      <p>{ingredients}</p>
-      <br />
-      <p>{steps}</p>
-      <br />
-      <p>{source}</p>
+      {acf.picture && <Image acf={acf} />}
+      {acf.time && <Time acf={acf} />}
+      {acf.serving && <Serving acf={acf} />}
+      <Ingredients acf={acf} />
+      <Steps acf={acf} />
+      <PDF acf={acf} />
+      <Source acf={acf} />
     </StyledRecipe>
   );
 };
