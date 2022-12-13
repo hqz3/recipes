@@ -8,7 +8,6 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledGroup = styled.section`
-  border: 1px solid black;
   background-color: var(--column-background-color);
   height: 100%;
   overflow-y: scroll;

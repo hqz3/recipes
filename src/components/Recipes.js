@@ -11,7 +11,6 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledRecipes = styled.div`
-  border: 1px solid blue;
   flex: 1;
   height: 100%;
   overflow-y: scroll;
