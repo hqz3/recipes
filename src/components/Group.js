@@ -1,7 +1,7 @@
 import React from "react";
 // Component
 import Search from "./Search";
-import Type from "./Type";
+import SubGroup from "./SubGroup";
 // React-Router
 import { Routes, Route, NavLink } from "react-router-dom";
 // Styled
@@ -34,7 +34,9 @@ const Group = ({ data }) => {
           <Route
             key={group.categoryId}
             path={`${group.slug}/*`}
-            element={<Type key={group.categoryId} types={data[group.slug]} />}
+            element={
+              <SubGroup key={group.categoryId} subGroups={data[group.slug]} />
+            }
           />
         ))}
         <Route path="search" element={<Search />} />
