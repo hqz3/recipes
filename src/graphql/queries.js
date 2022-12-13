@@ -23,10 +23,10 @@ export const GET_ALL_CATEGORIES = gql`
 `;
 
 export const GET_RECIPES = gql`
-  query ($categoryId: Int!) {
+  query ($id: Int!) {
     posts(
       first: 99999
-      where: { categoryId: $categoryId, orderby: { field: TITLE, order: ASC } }
+      where: { categoryId: $id, orderby: { field: TITLE, order: ASC } }
     ) {
       edges {
         node {
