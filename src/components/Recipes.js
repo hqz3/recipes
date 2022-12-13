@@ -20,8 +20,8 @@ const StyledRecipes = styled.div`
 `;
 
 const Recipes = ({ subGroupId }) => {
-  const { isFetching, data } = useQuery("recipes", () =>
-    getRecipes(subGroupId)
+  const { isFetching, data } = useQuery("recipes", ({ signal }) =>
+    getRecipes(subGroupId, signal)
   );
 
   if (isFetching) {

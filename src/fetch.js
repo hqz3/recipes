@@ -43,10 +43,10 @@ export const getAllCategories = async () => {
   return filtered;
 };
 
-export const getRecipes = async (categoryId) => {
+export const getRecipes = async (id, signal) => {
   const graphQLClient = new GraphQLClient(
-    process.env.REACT_APP_WORDPRESS_API_URL
+    process.env.REACT_APP_WORDPRESS_API_URL,
+    { signal }
   );
-  const data = await graphQLClient.request(GET_RECIPES, { categoryId });
-  return data;
+  return await graphQLClient.request(GET_RECIPES, { id });
 };
