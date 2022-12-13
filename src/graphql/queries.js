@@ -39,7 +39,7 @@ export const GET_RECIPES = gql`
               mediaItemUrl
             }
             picture {
-              sourceUrl(size: MEDIUM)
+              sourceUrl(size: LARGE)
             }
             serving
             source
