@@ -22,7 +22,7 @@ export const GET_ALL_CATEGORIES = gql`
   }
 `;
 
-export const GET_POSTS = gql`
+export const GET_RECIPES = gql`
   query ($categoryId: Int!) {
     posts(
       first: 99999
@@ -30,10 +30,9 @@ export const GET_POSTS = gql`
     ) {
       edges {
         node {
-          id
           title
           slug
-          recipe {
+          acf {
             classification
             ingredients
             pdf {
@@ -47,6 +46,7 @@ export const GET_POSTS = gql`
             steps
             time
           }
+          postId
         }
       }
     }
