@@ -70,14 +70,19 @@ a.active {
   }
 }
 
-.meat {
+[data-classification="meat"] {
   color: #ff0000;
 }
 
-.seafood {
+[data-classification="seafood"] {
   color: #0040ff;
 }
 
-.vegan {
+[data-classification="vegan"] {
   color: #1ba500;
+}
+
+.pdf,
+.source {
+  margin: 0;
 }
