@@ -1,13 +1,15 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Component
+import Search from "./Search";
 import Type from "./Type";
 // React-Router
 import { Routes, Route, NavLink } from "react-router-dom";
 // Styled
 import styled from "styled-components";
+import NotFound from "./NotFound";
 
-const StyledGroup = styled.div`
-  /* border: 1px solid green; */
+const StyledGroup = styled.section`
+  border: 1px solid green;
   background-color: var(--column-background-color);
   height: 100%;
   overflow-y: scroll;
@@ -16,32 +18,27 @@ const StyledGroup = styled.div`
 `;
 
 const Group = ({ data }) => {
-  const [reload, setReload] = useState(false);
-  const prevGroup = useRef();
-
   return (
     <>
       <StyledGroup className="custom-scrollbar">
         {data.groups.map((group) => {
           return (
-            <NavLink
-              key={group.categoryId}
-              to={`/${group.slug}`}
-              onClick={() => {
-                // Reload component if viewing a different food group
-                if (group.categoryId !== prevGroup.current) {
-                  prevGroup.current = group.categoryId;
-                  setReload(!reload);
-                }
-              }}
-            >
+            <NavLink key={group.categoryId} to={`${group.slug}`}>
               {group.name}
             </NavLink>
           );
         })}
       </StyledGroup>
       <Routes>
-        <Route path=":group/*" element={<Type key={reload} data={data} />} />
+        {data.groups.map((group) => (
+          <Route
+            key={group.categoryId}
+            path={`${group.slug}/*`}
+            element={<Type key={group.categoryId} types={data[group.slug]} />}
+          />
+        ))}
+        <Route path="search" element={<Search />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
