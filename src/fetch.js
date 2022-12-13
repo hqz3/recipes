@@ -1,5 +1,5 @@
 import { GraphQLClient, request } from "graphql-request";
-import { GET_ALL_CATEGORIES, GET_POSTS } from "./graphql/queries";
+import { GET_ALL_CATEGORIES, GET_RECIPES } from "./graphql/queries";
 
 export const getAllCategories = async () => {
   const {
@@ -28,7 +28,7 @@ export const getAllCategories = async () => {
     filtered[item.node.slug] = [];
   });
 
-  // Link food types to food groups
+  // Link food subgroups to food groups
   for (let item of data) {
     if (item.node.parent !== null) {
       const parentSlug = filtered.idToSlug[item.node.parent.node.categoryId];
@@ -47,6 +47,6 @@ export const getRecipes = async (categoryId) => {
   const graphQLClient = new GraphQLClient(
     process.env.REACT_APP_WORDPRESS_API_URL
   );
-  const data = await graphQLClient.request(GET_POSTS, { categoryId });
+  const data = await graphQLClient.request(GET_RECIPES, { categoryId });
   return data;
 };
