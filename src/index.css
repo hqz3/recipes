@@ -8,7 +8,6 @@
 
 :root {
   --font-color: black;
-  --column-background-color: white;
   --link-margin: 0.5rem;
   --recipe-font-size: 0.9rem;
 }
@@ -56,7 +55,7 @@ a.active {
 
 /* Column expand from left to right animation */
 .expand-right {
-  animation: expandRight 0.15s linear;
+  animation: expandRight 0.25s linear;
 }
 
 @keyframes expandRight {

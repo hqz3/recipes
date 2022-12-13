@@ -16,7 +16,7 @@ const StyledRecipe = styled.div`
   height: 0px;
   overflow: hidden;
   padding: 0;
-  transition: height 0.5s ease-in-out;
+  transition: height 0.25s ease-in-out;
 `;
 
 const Recipe = ({ recipe }) => {
