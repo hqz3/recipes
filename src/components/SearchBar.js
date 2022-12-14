@@ -27,6 +27,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   return (
     <StyledSearchBar
+      type="search"
       placeholder="Search"
       onKeyDown={(e) => {
         const query = e.target.value;
