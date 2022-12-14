@@ -7,6 +7,7 @@
 }
 
 :root {
+  --column-padding: 0 40px 0 40px;
   --font-color: black;
   --link-margin: 0.5rem;
   --recipe-font-size: 0.9rem;
