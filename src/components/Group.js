@@ -24,11 +24,15 @@ const StyledGroup = styled.section`
 `;
 
 const Group = ({ data }) => {
+  const [searchOpen, setSearchOpen] = useState(false);
   const [subGroupOpen, setSubGroupOpen] = useState(false);
 
   return (
     <>
-      <StyledGroup className="custom-scrollbar" data-hidden={subGroupOpen}>
+      <StyledGroup
+        className="custom-scrollbar"
+        data-hidden={subGroupOpen || searchOpen}
+      >
         {data.groups.map((group) => {
           return (
             <NavLink key={group.categoryId} to={`${group.slug}`}>
@@ -51,7 +55,10 @@ const Group = ({ data }) => {
             }
           />
         ))}
-        <Route path="search/:query/*" element={<Search />} />
+        <Route
+          path="search/:query/*"
+          element={<Search setSearchOpen={setSearchOpen} />}
+        />
       </Routes>
     </>
   );

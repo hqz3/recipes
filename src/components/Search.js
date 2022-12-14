@@ -7,7 +7,13 @@ import Spinner from "./Spinner";
 import { useQuery } from "react-query";
 import { getSearch } from "../fetch";
 // React-Router
-import { Routes, Route, NavLink, useParams } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  NavLink,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 // Styled
 import styled from "styled-components";
 // Utils
@@ -20,9 +26,18 @@ const StyledSearch = styled.section`
   width: 100%;
   word-wrap: normal;
   z-index: 1;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 5px;
+
+    i {
+      display: inline-block;
+    }
+  }
 `;
 
-const Search = () => {
+const Search = ({ setSearchOpen }) => {
+  const navigate = useNavigate();
   const { query } = useParams();
   const cleanedQuery = query.split("-").join(" ");
 
@@ -32,6 +47,8 @@ const Search = () => {
 
   useEffect(() => {
     refetch();
+    setSearchOpen(true);
+    return () => setSearchOpen(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cleanedQuery]);
 
@@ -53,6 +70,7 @@ const Search = () => {
       onClick={toggleRecipe}
       onTransitionEnd={setDisplayNone}
     >
+      <i className="fa-solid fa-chevron-left" onClick={() => navigate("../")} />
       {recipes.map((recipe, idx) => (
         <article key={recipe.node.postId}>
           <NavLink
