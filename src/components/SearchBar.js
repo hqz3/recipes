@@ -13,10 +13,21 @@ const StyledSearchBar = styled.input`
   position: sticky;
   width: 100%;
   z-index: 100;
+
   &::placeholder {
     font-family: "Frank Ruhl Libre", serif;
     color: black;
   }
+
+  /* Search bar cancel button styling */
+  &::-webkit-search-cancel-button {
+    margin-right: 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     font-size: 1.25rem;
     height: 2.5rem;
