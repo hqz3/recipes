@@ -17,6 +17,11 @@ const StyledRecipe = styled.section`
   overflow: hidden;
   padding: 0;
   transition: height 0.25s ease-in-out;
+
+  ul,
+  li {
+    margin-left: -10px;
+  }
 `;
 
 const Recipe = ({ recipe }) => {
@@ -38,8 +43,8 @@ const Recipe = ({ recipe }) => {
       {acf.serving && <Serving acf={acf} />}
       <Ingredients acf={acf} />
       <Steps acf={acf} />
-      <PDF acf={acf} />
-      <Source acf={acf} />
+      {acf.pdf && <PDF acf={acf} />}
+      {acf.source && <Source acf={acf} />}
     </StyledRecipe>
   );
 };

@@ -3,8 +3,10 @@ import React from "react";
 const Serving = ({ acf }) => {
   return (
     <>
-      <b>Serving</b>
-      <div dangerouslySetInnerHTML={{ __html: acf.serving }} />
+      <div>
+        <b>Serving</b>{" "}
+        <span dangerouslySetInnerHTML={{ __html: acf.serving }} />
+      </div>
       <br />
     </>
   );

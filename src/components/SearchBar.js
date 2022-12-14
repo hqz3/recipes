@@ -9,7 +9,7 @@ const StyledSearchBar = styled.input`
   height: 50px;
   margin: 1rem 0;
   outline: none;
-  padding: 0 1rem;
+  padding: 0 1rem 0 0;
   position: sticky;
   width: 100%;
   z-index: 100;
