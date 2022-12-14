@@ -46,6 +46,9 @@ a.active {
 }
 
 /* Search bar cancel button styling */
+input[type="search"]::-webkit-search-cancel-button {
+  margin-right: 0.5rem;
+}
 input[type="search"]::-webkit-search-cancel-button:hover {
   cursor: pointer;
 }
@@ -61,13 +64,13 @@ input[type="search"]::-webkit-search-cancel-button:hover {
 
 /* Column expand from left to right animation */
 .expand-right {
-  animation: expandRight 0.25s linear;
+  animation: expandRight 0.15s linear;
 }
 
 @keyframes expandRight {
   from {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
   to {
     opacity: 1;
