@@ -32,6 +32,7 @@ const Search = () => {
 
   useEffect(() => {
     refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cleanedQuery]);
 
   if (isFetching) {
