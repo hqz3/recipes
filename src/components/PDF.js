@@ -4,8 +4,9 @@ import styled from "styled-components";
 const StyledPDF = styled.form`
   input {
     background-color: white;
-    border: 0.5px solid black;
+    border: 0.5pt solid black;
     border-radius: 5px;
+    font-family: "Frank Ruhl Libre", serif;
     padding: 5px;
   }
 
