@@ -9,12 +9,12 @@ const StyledSearchBar = styled.input`
   height: 50px;
   margin: 1rem 0;
   outline: none;
-  padding: 0 1rem 0 0;
+  padding: 0 0 0 5px;
   position: sticky;
   width: 100%;
   z-index: 100;
   &::placeholder {
-    font-family: "EB Garamond", serif;
+    font-family: "Frank Ruhl Libre", serif;
     color: black;
   }
   @media screen and (max-width: 768px) {
