@@ -9,12 +9,14 @@ import { getRecipes } from "../fetch.js";
 import { Routes, Route, NavLink } from "react-router-dom";
 // Styled
 import styled from "styled-components";
+// Utils
+import toggleRecipe from "../utils/toggleRecipe";
+import setDisplayNone from "../utils/setDisplayNone";
 
-const StyledRecipes = styled.div`
+const StyledRecipes = styled.section`
   flex: 1;
-  height: 100%;
   overflow-y: scroll;
-  padding: 0 40px 0 40px;
+  padding: var(--column-padding);
   word-wrap: normal;
   z-index: 1;
 `;
@@ -32,59 +34,29 @@ const Recipes = ({ subGroupId }) => {
     posts: { edges: recipes },
   } = data;
 
-  const toggleRecipe = (e) => {
-    // Only triggers if user clicks on the recipe title
-    if (!e.target.classList.contains("recipe-title")) return;
-    const articleEl = e.target.parentNode;
-    const recipeEl = articleEl.querySelector(".recipe");
-    if (!recipeEl) return;
-
-    // Open the recipe element if it is closed
-    if (recipeEl.style.height === "0px") {
-      recipeEl.style.display = "block";
-      // Underline the title
-      e.target.classList.add("active");
-      setTimeout(() => {
-        recipeEl.style.height = `${recipeEl.scrollHeight}px`;
-      }, 0);
-    } else {
-      recipeEl.style.height = "0px";
-      // Remove the title underline
-      e.target.classList.remove("active");
-    }
-  };
-
-  const setDisplayNone = (e) => {
-    if (e.target.style.height === "0px") {
-      e.target.style.display = "none";
-    }
-  };
-
   return (
     <StyledRecipes
       className="custom-scrollbar expand-right"
       onClick={toggleRecipe}
       onTransitionEnd={setDisplayNone}
     >
-      {recipes.map((recipe, idx) => {
-        return (
-          <article key={recipe.node.postId}>
-            <NavLink
-              className="recipe-title"
-              to={`${recipe.node.postId}`}
-              data-classification={recipe.node.acf.classification}
-            >
-              {recipe.node.title}
-            </NavLink>
-            <Routes>
-              <Route
-                path={`${recipe.node.postId}`}
-                element={<Recipe recipe={recipes[idx]} />}
-              />
-            </Routes>
-          </article>
-        );
-      })}
+      {recipes.map((recipe, idx) => (
+        <article key={recipe.node.postId}>
+          <NavLink
+            className="recipe-title"
+            to={`${recipe.node.postId}`}
+            data-classification={recipe.node.acf.classification}
+          >
+            {recipe.node.title}
+          </NavLink>
+          <Routes>
+            <Route
+              path={`${recipe.node.postId}`}
+              element={<Recipe recipe={recipes[idx]} />}
+            />
+          </Routes>
+        </article>
+      ))}
     </StyledRecipes>
   );
 };
