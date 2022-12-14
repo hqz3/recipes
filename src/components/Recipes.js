@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // Component
 import Recipe from "./Recipe";
 import Spinner from "./Spinner";
@@ -6,7 +6,7 @@ import Spinner from "./Spinner";
 import { useQuery } from "react-query";
 import { getRecipes } from "../fetch.js";
 // React-Router
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 // Styled
 import styled from "styled-components";
 // Utils
@@ -19,12 +19,34 @@ const StyledRecipes = styled.section`
   padding: var(--column-padding);
   word-wrap: normal;
   z-index: 1;
+
+  i {
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-left: 5px;
+    width: 100%;
+
+    i {
+      display: block;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 `;
 
-const Recipes = ({ subGroupId }) => {
+const Recipes = ({ setRecipesOpen, subGroupId }) => {
+  const navigate = useNavigate();
   const { isFetching, data } = useQuery("recipes", ({ signal }) =>
     getRecipes(subGroupId, signal)
   );
+
+  useEffect(() => {
+    setRecipesOpen(true);
+    return () => setRecipesOpen(false);
+  }, []);
 
   if (isFetching) {
     return <Spinner />;
@@ -40,6 +62,7 @@ const Recipes = ({ subGroupId }) => {
       onClick={toggleRecipe}
       onTransitionEnd={setDisplayNone}
     >
+      <i className="fa-solid fa-chevron-left" onClick={() => navigate("../")} />
       {recipes.map((recipe, idx) => (
         <article key={recipe.node.postId}>
           <NavLink

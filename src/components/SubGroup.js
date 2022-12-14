@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // Component
 import Recipes from "./Recipes";
 // React-Router
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 // Styled
 import styled from "styled-components";
 
@@ -12,12 +12,46 @@ const StyledSubGroup = styled.section`
   overflow-y: scroll;
   padding: var(--column-padding);
   z-index: 2;
+
+  i {
+    display: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-left: 5px;
+    width: 100%;
+    &[data-hidden="true"] {
+      display: none;
+    }
+
+    i {
+      display: block;
+    }
+  }
 `;
 
-const SubGroup = ({ subGroups }) => {
+const SubGroup = ({ setSubGroupOpen, subGroups }) => {
+  const navigate = useNavigate();
+  const [recipesOpen, setRecipesOpen] = useState(false);
+
+  useEffect(() => {
+    setSubGroupOpen(true);
+    return () => setSubGroupOpen(false);
+  }, []);
+
   return (
     <>
-      <StyledSubGroup className="custom-scrollbar expand-right">
+      <StyledSubGroup
+        className="custom-scrollbar expand-right"
+        data-hidden={recipesOpen}
+      >
+        <i
+          className="fa-solid fa-chevron-left"
+          onClick={() => navigate("../")}
+        />
         {subGroups.map((subGroup) => {
           return (
             <NavLink key={subGroup.categoryId} to={`${subGroup.slug}`}>
@@ -35,6 +69,7 @@ const SubGroup = ({ subGroups }) => {
               element={
                 <Recipes
                   key={subGroup.categoryId}
+                  setRecipesOpen={setRecipesOpen}
                   subGroupId={subGroup.categoryId}
                 />
               }
