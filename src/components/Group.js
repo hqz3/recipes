@@ -12,7 +12,7 @@ const StyledGroup = styled.section`
   height: 100%;
   overflow-y: scroll;
   padding: var(--column-padding);
-  padding-left: 0;
+  padding-left: 5px;
   z-index: 3;
 `;
 
