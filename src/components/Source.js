@@ -1,14 +1,26 @@
 import React from "react";
+import styled from "styled-components";
+
+const StyledSource = styled.form`
+  input {
+    background-color: white;
+    border: 0.5px solid black;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  input:hover {
+    cursor: pointer;
+  }
+`;
 
 const Source = ({ acf }) => {
   return (
     <>
-      <b>Source</b>
-      {acf.source && (
-        <a className="source" href={acf.source}>
-          {acf.source}
-        </a>
-      )}
+      <StyledSource action={acf.source}>
+        <input type="submit" value="SOURCE" />
+      </StyledSource>
+      <br />
     </>
   );
 };
