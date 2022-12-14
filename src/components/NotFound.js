@@ -11,7 +11,7 @@ const StyledNotFound = styled.section`
 const NotFound = () => {
   return (
     <StyledNotFound>
-      <h3>404 - Not Found</h3>
+      <h3>Not Found</h3>
     </StyledNotFound>
   );
 };
