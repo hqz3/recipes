@@ -20,19 +20,12 @@ const StyledRecipes = styled.section`
   word-wrap: normal;
   z-index: 1;
 
-  i {
-    display: none;
-  }
-
   @media screen and (max-width: 768px) {
     padding-left: 5px;
     width: 100%;
 
     i {
-      display: block;
-      &:hover {
-        cursor: pointer;
-      }
+      display: inline-block;
     }
   }
 `;

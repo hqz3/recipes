@@ -13,13 +13,6 @@ const StyledSubGroup = styled.section`
   padding: var(--column-padding);
   z-index: 2;
 
-  i {
-    display: none;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
   @media screen and (max-width: 768px) {
     padding-left: 5px;
     width: 100%;
@@ -28,7 +21,7 @@ const StyledSubGroup = styled.section`
     }
 
     i {
-      display: block;
+      display: inline-block;
     }
   }
 `;
