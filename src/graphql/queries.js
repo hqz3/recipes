@@ -8,9 +8,9 @@ export const GET_ALL_CATEGORIES = gql`
     ) {
       edges {
         node {
+          categoryId
           name
           slug
-          categoryId
           parent {
             node {
               categoryId
@@ -30,23 +30,50 @@ export const GET_RECIPES = gql`
     ) {
       edges {
         node {
+          postId
           title
           slug
           acf {
-            classification
-            ingredients
-            pdf {
-              mediaItemUrl
-            }
             picture {
               sourceUrl(size: LARGE)
             }
-            serving
-            source
-            steps
+            classification
             time
+            serving
+            ingredients
+            steps
+            source
+            pdf {
+              mediaItemUrl
+            }
           }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_SEARCH = gql`
+  query ($query: String!) {
+    posts(where: { search: $query }, first: 99999) {
+      edges {
+        node {
           postId
+          title
+          acf {
+            picture {
+              sourceUrl(size: LARGE)
+            }
+            classification
+            time
+            serving
+            ingredients
+            steps
+            source
+            pdf {
+              mediaItemUrl
+            }
+          }
         }
       }
     }

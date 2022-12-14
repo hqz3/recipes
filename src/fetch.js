@@ -1,5 +1,5 @@
 import { GraphQLClient, request } from "graphql-request";
-import { GET_ALL_CATEGORIES, GET_RECIPES } from "./graphql/queries";
+import { GET_ALL_CATEGORIES, GET_RECIPES, GET_SEARCH } from "./graphql/queries";
 
 export const getAllCategories = async () => {
   const {
@@ -49,4 +49,12 @@ export const getRecipes = async (id, signal) => {
     { signal }
   );
   return await graphQLClient.request(GET_RECIPES, { id });
+};
+
+export const getSearch = async (query, signal) => {
+  const graphQLClient = new GraphQLClient(
+    process.env.REACT_APP_WORDPRESS_API_URL,
+    { signal }
+  );
+  return await graphQLClient.request(GET_SEARCH, { query });
 };
