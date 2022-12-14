@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 // Styled
 import styled from "styled-components";
 
@@ -23,7 +24,19 @@ const StyledSearchBar = styled.input`
 `;
 
 const SearchBar = () => {
-  return <StyledSearchBar placeholder="Search" />;
+  const navigate = useNavigate();
+  return (
+    <StyledSearchBar
+      placeholder="Search"
+      onKeyDown={(e) => {
+        const query = e.target.value;
+        if (e.key === "Enter" && query.length) {
+          // Replace spaces in search queries with dashes to prevent errors
+          navigate(`/search/${query.split(" ").join("-")}`);
+        }
+      }}
+    />
+  );
 };
 
 export default SearchBar;
