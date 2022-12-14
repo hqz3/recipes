@@ -10,7 +10,7 @@ import Source from "./Source";
 // Styled
 import styled from "styled-components";
 
-const StyledRecipe = styled.div`
+const StyledRecipe = styled.section`
   cursor: default;
   font-size: var(--recipe-font-size);
   height: 0px;
