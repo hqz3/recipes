@@ -49,7 +49,7 @@ const Search = () => {
 
   return (
     <StyledSearch
-      className="custom-scrollbar"
+      className="custom-scrollbar expand-right"
       onClick={toggleRecipe}
       onTransitionEnd={setDisplayNone}
     >
