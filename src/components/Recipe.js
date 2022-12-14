@@ -20,7 +20,7 @@ const StyledRecipe = styled.section`
 
   ul,
   li {
-    margin-left: -10px;
+    margin-left: -11.5px;
   }
 `;
 
