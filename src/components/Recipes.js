@@ -39,6 +39,7 @@ const Recipes = ({ setRecipesOpen, subGroupId }) => {
   useEffect(() => {
     setRecipesOpen(true);
     return () => setRecipesOpen(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isFetching) {

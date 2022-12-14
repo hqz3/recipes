@@ -33,6 +33,7 @@ const SubGroup = ({ setSubGroupOpen, subGroups }) => {
   useEffect(() => {
     setSubGroupOpen(true);
     return () => setSubGroupOpen(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
