@@ -30,7 +30,7 @@ const Group = ({ data }) => {
   return (
     <>
       <StyledGroup
-        className="custom-scrollbar"
+        className="custom-scrollbar expand-right"
         data-hidden={subGroupOpen || searchOpen}
       >
         {data.groups.map((group) => {
