@@ -81,3 +81,12 @@ a.active {
 [data-classification="vegan"] {
   color: #1ba500;
 }
+
+/* Hide left chevron icon on normal screen sizes */
+.fa-solid {
+  display: none;
+}
+
+.fa-solid:hover {
+  cursor: pointer;
+}
