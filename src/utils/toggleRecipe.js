@@ -8,11 +8,9 @@ const toggleRecipe = (e) => {
   // Open the recipe element if it is closed
   if (recipeEl.style.height === "0px") {
     recipeEl.style.display = "block";
+    recipeEl.style.height = `${recipeEl.scrollHeight}px`;
     // Underline the title
     e.target.classList.add("active");
-    setTimeout(() => {
-      recipeEl.style.height = `${recipeEl.scrollHeight}px`;
-    }, 0);
   } else {
     recipeEl.style.height = "0px";
     // Remove the title underline
