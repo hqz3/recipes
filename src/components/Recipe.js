@@ -28,11 +28,17 @@ const StyledRecipe = styled.section`
     background-color: white;
     border: 0.5pt solid black;
     border-radius: 5px;
-    font-family: "Frank Ruhl Libre", Times, "Times New Roman", Georgia, serif;
+    font-family: "Frank Ruhl Libre", Times, serif;
     padding: 5px;
 
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    form input {
+      font-family: Times, "Times New Roman", Georgia, serif;
     }
   }
 `;
