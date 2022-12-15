@@ -11,7 +11,8 @@ import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // Utils
 import toggleRecipe from "../utils/toggleRecipe";
-import setDisplayNone from "../utils/setDisplayNone";
+import setDisplayNoneIfRecipeClosed from "../utils/setDisplayNoneIfRecipeClosed";
+import scrollRecipeTitleIntoView from "../utils/scrollRecipeTitleIntoView";
 
 const StyledRecipes = styled.section`
   flex: 1;
@@ -53,8 +54,13 @@ const Recipes = ({ setRecipesOpen, subGroupId }) => {
   return (
     <StyledRecipes
       className="custom-scrollbar expand-right"
-      onClick={toggleRecipe}
-      onTransitionEnd={setDisplayNone}
+      onClick={(e) => {
+        toggleRecipe(e);
+      }}
+      onTransitionEnd={(e) => {
+        setDisplayNoneIfRecipeClosed(e);
+        scrollRecipeTitleIntoView(e);
+      }}
     >
       <i className="fa-solid fa-chevron-left" onClick={() => navigate("../")} />
       {recipes.map((recipe, idx) => (

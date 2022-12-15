@@ -18,7 +18,8 @@ import {
 import styled from "styled-components";
 // Utils
 import toggleRecipe from "../utils/toggleRecipe";
-import setDisplayNone from "../utils/setDisplayNone";
+import setDisplayNoneIfRecipeClosed from "../utils/setDisplayNoneIfRecipeClosed";
+import scrollRecipeTitleIntoView from "../utils/scrollRecipeTitleIntoView";
 
 const StyledSearch = styled.section`
   overflow-y: scroll;
@@ -68,7 +69,10 @@ const Search = ({ setSearchOpen }) => {
     <StyledSearch
       className="custom-scrollbar expand-right"
       onClick={toggleRecipe}
-      onTransitionEnd={setDisplayNone}
+      onTransitionEnd={(e) => {
+        setDisplayNoneIfRecipeClosed(e);
+        scrollRecipeTitleIntoView(e);
+      }}
     >
       <i className="fa-solid fa-chevron-left" onClick={() => navigate("../")} />
       {recipes.map((recipe, idx) => (
