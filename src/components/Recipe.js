@@ -35,12 +35,6 @@ const StyledRecipe = styled.section`
       cursor: pointer;
     }
   }
-
-  @media screen and (max-width: 768px) {
-    form input {
-      font-family: Times, "Times New Roman", Georgia, serif;
-    }
-  }
 `;
 
 const Recipe = ({ recipe }) => {
