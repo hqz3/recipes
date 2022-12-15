@@ -22,6 +22,19 @@ const StyledRecipe = styled.section`
   li {
     margin-left: -11.5px;
   }
+
+  /* PDF and Source button styling */
+  form input {
+    background-color: white;
+    border: 0.5pt solid black;
+    border-radius: 5px;
+    font-family: "Frank Ruhl Libre", "Times", serif;
+    padding: 5px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 const Recipe = ({ recipe }) => {
