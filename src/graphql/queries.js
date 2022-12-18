@@ -2,10 +2,7 @@ import { gql } from "graphql-tag";
 
 export const GET_ALL_CATEGORIES = gql`
   query {
-    categories(
-      first: 99999
-      where: { exclude: "1", orderby: NAME, order: ASC }
-    ) {
+    categories(first: 99999, where: { orderby: NAME, order: ASC }) {
       edges {
         node {
           categoryId
