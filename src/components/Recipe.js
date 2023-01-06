@@ -24,7 +24,12 @@ const StyledRecipe = styled.section`
   }
 
   /* PDF and Source button styling */
-  form input {
+  .recipe__buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .recipe__buttons input {
     background-color: white;
     border: 0.5pt solid black;
     border-radius: 5px;
@@ -56,8 +61,10 @@ const Recipe = ({ recipe }) => {
       {acf.serving && <Serving acf={acf} />}
       <Ingredients acf={acf} />
       <Steps acf={acf} />
-      {acf.pdf && <PDF acf={acf} />}
-      {acf.source && <Source acf={acf} />}
+      <div className="recipe__buttons">
+        {acf.pdf && <PDF acf={acf} />}
+        {acf.source && <Source acf={acf} />}
+      </div>
     </StyledRecipe>
   );
 };
