@@ -40,6 +40,12 @@ const StyledRecipe = styled.section`
       cursor: pointer;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .recipe__buttons input {
+      font-family: Times;
+    }
+  }
 `;
 
 const Recipe = ({ recipe }) => {
