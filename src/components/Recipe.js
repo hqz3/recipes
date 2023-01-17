@@ -5,8 +5,6 @@ import Time from "./Time";
 import Serving from "./Serving";
 import Ingredients from "./Ingredients";
 import Steps from "./Steps";
-import PDF from "./PDF";
-import Source from "./Source";
 // Styled
 import styled from "styled-components";
 
@@ -29,21 +27,16 @@ const StyledRecipe = styled.section`
     gap: 0.5rem;
   }
 
-  .recipe__buttons input {
+  .recipe__buttons a {
     background-color: white;
     border: 0.5pt solid black;
     border-radius: 5px;
     font-family: "Frank Ruhl Libre", Times, serif;
+    margin: 0;
     padding: 5px;
 
     &:hover {
       cursor: pointer;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .recipe__buttons input {
-      font-family: Times;
     }
   }
 `;
@@ -68,8 +61,8 @@ const Recipe = ({ recipe }) => {
       <Ingredients acf={acf} />
       <Steps acf={acf} />
       <div className="recipe__buttons">
-        {acf.pdf && <PDF acf={acf} />}
-        {acf.source && <Source acf={acf} />}
+        {acf.pdf && <a href={acf.pdf.mediaItemUrl}>PDF</a>}
+        {acf.source && <a href={acf.source}>SOURCE</a>}
       </div>
     </StyledRecipe>
   );
