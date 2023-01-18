@@ -32,8 +32,8 @@ const StyledRecipe = styled.section`
     border: 0.5pt solid black;
     border-radius: 5px;
     font-family: "Frank Ruhl Libre", Times, serif;
-    margin: 0;
-    padding: 5px;
+    margin-top: 0;
+    padding: 0.25rem;
 
     &:hover {
       cursor: pointer;
