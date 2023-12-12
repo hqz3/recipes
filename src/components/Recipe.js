@@ -61,8 +61,16 @@ const Recipe = ({ recipe }) => {
       <Ingredients acf={acf} />
       <Steps acf={acf} />
       <div className="recipe__buttons">
-        {acf.pdf && <a href={acf.pdf.mediaItemUrl}>PDF</a>}
-        {acf.source && <a href={acf.source}>SOURCE</a>}
+        {acf.pdf && (
+          <a href={acf.pdf.mediaItemUrl} target="_blank" rel="noreferrer">
+            PDF
+          </a>
+        )}
+        {acf.source && (
+          <a href={acf.source} target="_blank" rel="noreferrer">
+            SOURCE
+          </a>
+        )}
       </div>
     </StyledRecipe>
   );
