@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const StyledSearchBar = styled.input`
   border: 1px solid black;
+  font-family: inherit;
   font-size: 1.5rem;
   height: 50px;
   margin: 1rem 0;
